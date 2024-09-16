@@ -6,17 +6,7 @@ import utils.AbstractPage;
 
 import java.util.List;
 
-
 public class BasketPage extends AbstractPage {
-
-    public String startPrice;
-    public String monthPrice;
-
-    @FindBy(xpath = "//section[@class='basketContent']")
-    private WebElement basketSection;
-
-    @FindBy(xpath = "//section[@class='basketContent']")
-    private List<WebElement> basketSectionList;
 
     @FindBy(xpath = "//h1[contains(text(), 'Twój koszyk')]")
     private WebElement pageHeader;
@@ -37,8 +27,8 @@ public class BasketPage extends AbstractPage {
         super();
     }
 
-    public String getBasketPageHeader(){
-        waitFor(5).until(d -> pageHeaderList.size() > 0);
+    public String getBasketPageHeader() {
+        waitFor(7).until(d -> pageHeaderList.size() > 0);
         return pageHeader.getText();
     }
 

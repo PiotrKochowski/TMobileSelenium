@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,9 +18,9 @@ public class HomePage extends AbstractPage {
     private WebElement mainMenu;
 
     @FindBy(xpath = "//div[contains(@class, 'hidden menu-dropdown-submenu')]")
-    private WebElement submenu;
+    private WebElement subMenu;
 
-    @FindBy(xpath = "//button[contains(text(), 'Urządzenia')]")
+    @FindBy(xpath = "//nav[@id='main-menu']//button")
     private WebElement devicesTab;
 
     @FindBy(xpath = "//a[@data-ga-ea='nav-links - Urządzenia/Bez abonamentu/Smartwatche']")
@@ -40,12 +39,15 @@ public class HomePage extends AbstractPage {
         driver.manage().window().maximize();
         if (checkVisibilityOfElement(btnAcceptCookies, 2))
             btnAcceptCookies.click();
-        waitFor(2).until(d -> ExpectedConditions.visibilityOf(mainMenu));
+        waitFor(5).until(d -> ExpectedConditions.visibilityOf(mainMenu));
     }
 
     public void clickDevicesTab() {
         devicesTab.click();
-        waitFor(5).until(d -> ExpectedConditions.visibilityOf(submenu));
+    }
+
+    public boolean isSubmenuVisible() {
+        return checkVisibilityOfElement(subMenu, 5);
     }
 
     public void clickSmartwatchesWithoutSubscription() {
@@ -53,7 +55,7 @@ public class HomePage extends AbstractPage {
     }
 
     public String getNumberOfProductsFromBasket() {
+        waitFor(2).until(d -> ExpectedConditions.visibilityOf(numberOfProductsInBasket));
         return numberOfProductsInBasket.getText().trim();
     }
-
 }

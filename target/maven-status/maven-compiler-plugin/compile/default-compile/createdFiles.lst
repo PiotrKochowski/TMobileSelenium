@@ -1,8 +1,0 @@
-utils\PropertiesLoader.class
-pages\DevicesWithoutSubscriptionPage.class
-utils\AbstractPage.class
-pages\ProductPage.class
-utils\DriverFactory.class
-utils\Base.class
-pages\BasketPage.class
-pages\HomePage.class

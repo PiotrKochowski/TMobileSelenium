@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
+    <!-- Definiowanie Appenderów -->
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-        </Console>
-        <File name="File" fileName="target/logs/selenium.log">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        <!-- Appender do pliku -->
+        <File name="FileAppender" fileName="target/logs/selenium.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
         </File>
+
+        <!-- Appender do konsoli -->
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"/>
+        </Console>
     </Appenders>
 
+    <!-- Definiowanie Loggerów -->
     <Loggers>
-        <!-- Logger dla Cucumbera -->
-        <Logger name="io.cucumber" level="info" additivity="false">
-            <AppenderRef ref="File"/>
-        </Logger>
-
-        <!-- Logger dla JUnit -->
-        <Logger name="org.junit" level="info" additivity="false">
-            <AppenderRef ref="File"/>
-        </Logger>
+        <!-- Root Logger -->
+        <Root level="info">
+            <AppenderRef ref="FileAppender"/>
+            <AppenderRef ref="ConsoleAppender"/>
+        </Root>
 
         <!-- Logger dla Selenium -->
         <Logger name="org.openqa.selenium" level="info" additivity="false">
-            <AppenderRef ref="File"/>
+            <AppenderRef ref="FileAppender"/>
+            <AppenderRef ref="ConsoleAppender"/>
         </Logger>
 
-        <!-- Logger dla całej aplikacji -->
-        <Root level="info">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="File"/>
-        </Root>
+        <!-- Logger dla Cucumbera -->
+        <Logger name="io.cucumber" level="info" additivity="false">
+            <AppenderRef ref="FileAppender"/>
+            <AppenderRef ref="ConsoleAppender"/>
+        </Logger>
+
+        <!-- Logger dla log4j -->
+        <Logger name="org.apache.logging.log4j" level="info" additivity="false">
+            <AppenderRef ref="FileAppender"/>
+            <AppenderRef ref="ConsoleAppender"/>
+        </Logger>
     </Loggers>
 </Configuration>

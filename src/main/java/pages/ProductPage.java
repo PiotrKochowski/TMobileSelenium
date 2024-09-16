@@ -1,18 +1,13 @@
 package pages;
 
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.AbstractPage;
 
 public class ProductPage extends AbstractPage {
 
     public static String startPrice;
     public static String monthPrice;
-
-    @FindBy(xpath = "PRD_ProductName")
-    private WebElement productName;
 
     @FindBy(xpath = "//div[contains(@class, 'Enabled')]//button[@data-qa='PRD_AddToBasket']")
     private WebElement btnAddToBasket;
@@ -23,16 +18,20 @@ public class ProductPage extends AbstractPage {
     @FindBy(xpath = "(//div[@class='dt_price_change'])[4]/div")
     private WebElement valueMonthPrice;
 
-    public ProductPage( ) {
+    public ProductPage() {
         super();
     }
 
-    public void clickBtnAddToBasket(){
+    public void clickBtnAddToBasket() {
         btnAddToBasket.click();
     }
 
+    public boolean isProductPageOpened() {
+        return checkVisibilityOfElement(btnAddToBasket, 5);
+    }
+
     public void setStartPrice() {
-        waitForElementDisplayed(valueStartPrice, 5);
+
         this.startPrice = valueStartPrice.getText().replaceAll("\\D+", "");
     }
 
