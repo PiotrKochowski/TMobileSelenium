@@ -21,6 +21,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
+                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
                     <includes>
                         <include>**/*.java</include>
                     </includes>
@@ -78,9 +79,9 @@
             <version>2.19.0</version>
         </dependency>
         <dependency>
-            <groupId>com.titusfortner</groupId>
-            <artifactId>selenium-logger</artifactId>
-            <version>2.3.0</version>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.16.1</version>
         </dependency>
     </dependencies>
 </project>

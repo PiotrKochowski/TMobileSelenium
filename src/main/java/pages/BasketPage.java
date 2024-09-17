@@ -28,7 +28,7 @@ public class BasketPage extends AbstractPage {
     }
 
     public String getBasketPageHeader() {
-        waitFor(7).until(d -> pageHeaderList.size() > 0);
+        waitFor(15).until(d -> pageHeaderList.size() > 0);
         return pageHeader.getText();
     }
 

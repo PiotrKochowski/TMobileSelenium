@@ -4,6 +4,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.ProductPage;
+import utils.Base;
 
 public class ProductSteps {
 
@@ -11,7 +12,8 @@ public class ProductSteps {
 
     @Then("Check if product page opened")
     public void checkIfProductPageOpened() {
-        Assert.assertTrue("Product page is not opened" , productPage.isProductPageOpened());
+        Assert.assertTrue("Product page is not opened", productPage.isProductPageOpened());
+        Base.logger.info("Product page opened");
     }
 
     @When("Add product to basket")
